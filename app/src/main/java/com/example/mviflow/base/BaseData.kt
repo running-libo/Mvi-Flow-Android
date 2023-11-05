@@ -8,14 +8,14 @@ import com.google.gson.annotations.SerializedName
  **/
 class BaseData<T> {
     @SerializedName("errorCode")
-    var code = -1
+    var errorCode = -1
     @SerializedName("errorMsg")
     var msg: String? = null
     var data: T? = null
     var state: ReqState = ReqState.Error
 
     override fun toString(): String {
-        return "BaseData(code=$code, msg=$msg, data=$data, state=$state)"
+        return "BaseData(code=$errorCode, msg=$msg, data=$data, state=$state)"
     }
 }
 
