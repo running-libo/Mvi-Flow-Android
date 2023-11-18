@@ -11,16 +11,13 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.mviflow.base.BaseActivity
 import com.example.mviflow.databinding.ActivityMain3Binding
-import com.example.mviflow.main.DetailUiSate
-import com.example.mviflow.main.MainIntent
-import com.example.mviflow.main.MainViewModel
 import com.example.mviflow.model.bean.ArticleItem
 import kotlinx.coroutines.flow.map
 
 class MainActivity3 : BaseActivity() {
-    private val viewModel by lazy {
-        ViewModelProvider(this)[MainViewModel::class.java]
-    }
+//    private val viewModel by lazy {
+//        ViewModelProvider(this)[MainViewModel::class.java]
+//    }
     private var textView: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,26 +46,30 @@ class MainActivity3 : BaseActivity() {
 
     override fun initData(savedInstanceState: Bundle?) {
 
-        lifecycleScope.launchWhenStarted {
-
-            //请求数据flow的流的监听和处理
-            viewModel.uiStateFlow.map { it.detailUiSate }
-                .collect { detailUiState ->
-                    when(detailUiState) {
-                        is DetailUiSate.SUCCESS -> {
-                            showText(detailUiState.articles.datas)
-                        }
-                        else -> {}
-                    }
-                }
-        }
     }
 
-    private fun showText(item: List<ArticleItem>) {
-        val sb = java.lang.StringBuilder()
-        item.forEach {
-            sb.append(it.title + "   " + it.niceDate + "\n")
-        }
-        textView?.text = sb.toString()
-    }
+//    override fun initData(savedInstanceState: Bundle?) {
+//
+//        lifecycleScope.launchWhenStarted {
+//
+//            //请求数据flow的流的监听和处理
+//            viewModel.uiStateFlow.map { it.detailUiSate }
+//                .collect { detailUiState ->
+//                    when(detailUiState) {
+//                        is DetailUiSate.SUCCESS -> {
+//                            showText(detailUiState.articles.datas)
+//                        }
+//                        else -> {}
+//                    }
+//                }
+//        }
+//    }
+//
+//    private fun showText(item: List<ArticleItem>) {
+//        val sb = java.lang.StringBuilder()
+//        item.forEach {
+//            sb.append(it.title + "   " + it.niceDate + "\n")
+//        }
+//        textView?.text = sb.toString()
+//    }
 }

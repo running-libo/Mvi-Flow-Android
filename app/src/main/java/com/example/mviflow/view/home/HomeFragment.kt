@@ -1,18 +1,25 @@
 package com.example.mviflow.view.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.example.mviflow.R
+import androidx.lifecycle.ViewModelProvider
+import com.example.mviflow.base.BaseBindingFragment
+import com.example.mviflow.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseBindingFragment<FragmentHomeBinding>({
+    FragmentHomeBinding.inflate(it)
+}) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    private val viewModel by lazy {
+        ViewModelProvider(this)[HomeViewModel::class.java]
+    }
+
+    override fun initView(view: View, savedInstanceState: Bundle?) {
+        //发送load的intent，且page=0
+        viewModel.sendUiIntent(HomeIntent.loadData(0))
+    }
+
+    override fun initData(savedInstanceState: Bundle?) {
+
     }
 }
